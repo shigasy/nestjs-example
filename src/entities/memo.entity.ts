@@ -13,4 +13,10 @@ export class Memo {
 
   @Column('text')
   test: string;
+
+  @Column('text')
+  test2: string;
+
+  @Column('text')
+  test3: string;
 }

@@ -71,3 +71,16 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## メモ
+TypeORMはモデルを作成（entitiesで定義）してから、migrationのgenerateコマンドで現在のDBとモデル定義を照らし合わせ、migrationファイルを作成という順番。
+モデルを常に正義としているみたい。（Railsはmigrationファイル書いてから、モデルが自動的にできあがる。）
+
+TypeORMのcliでmigrationファイルを作成する時、
+「現在のDBスキーマ」と「entitiesフォルダ内のモデル定義」を比較して、差分を作って自動的にmigrationを作成してくれる。
+（DBを参照して差分だと、
+- 未実行のmigrationによるDB差分
+- チーム開発のmigrationが共有されないままで生成された時など
+  - Aさんがtestテーブルを削除するmigrationとBさんがtestテーブルをtest2テーブルに変更するmigrationを書いた時に、差分が発生する。
+で、ミスが発生しそうなったら、entitiyのコミット履歴とか見ながら手動で直すのかな。それかミスが起こらないようにDB変更時は事前に話しておくのか？）
